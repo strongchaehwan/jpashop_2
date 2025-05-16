@@ -22,9 +22,10 @@ public class OrderService {
 
     //주문
     @Transactional
-    public Long order(Long memberId, Long itemId, int count) {
+    public Long order(Long memberId, Long itemId, int count) { //count 주문 수량
+
         Member member = memberRepository.findOne(memberId);
-        Item item = itemRepository.findOne(itemId).get();
+        Item item = itemRepository.findOne(itemId).orElseThrow();
 
         //배송 정보 생성
         Delivery delivery = new Delivery();
@@ -46,7 +47,7 @@ public class OrderService {
     //취소
 
     @Transactional
-    public void cancelOrder(Long orderId){
+    public void cancelOrder(Long orderId) {
         //주문 엔티티조회
         Order order = orderRepository.findOne(orderId);
         //주문취소
