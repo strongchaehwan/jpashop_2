@@ -61,5 +61,11 @@ public class OrderRepository {
 
     }
 
-
+    // 프록시 객체가 아니라 진짜 객체를 가져옴
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery("select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch  o.delivery d", Order.class)
+                .getResultList();
+    }
 }
