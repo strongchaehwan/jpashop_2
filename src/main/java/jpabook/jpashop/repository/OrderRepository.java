@@ -68,4 +68,13 @@ public class OrderRepository {
                         " join fetch  o.delivery d", Order.class)
                 .getResultList();
     }
+
+    public List<Order> findAllWithItem() {
+        return em.createQuery("select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" + // 1 대 다 패치 조인에서는 페이징 하면 안됌
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
 }
