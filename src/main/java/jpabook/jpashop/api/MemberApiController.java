@@ -32,6 +32,7 @@ public class MemberApiController {
         return new CreateMemberResponse(id);
     }
 
+    // 원래 PUT은 전체 업데이트를 할때 사용하는것임 부분 업데이트를 하려면 PATCH를 사용해야 rest 스타일임
     @PutMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMemberV2(@PathVariable(name = "id") Long id,
                                                @RequestBody @Valid UpdateMemberRequest request) {
