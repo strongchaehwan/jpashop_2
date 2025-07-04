@@ -36,13 +36,13 @@ public class MemberService {
     }
 
     public Optional<Member> findById(Long id) {
-        Member member = memberRepository.findOne(id);
+        Member member = memberRepository.findById(id).get();
         return Optional.of(member);
     }
 
     @Transactional
     public void update(Long id, String name) {
-        Member member = memberRepository.findOne(id);
+        Member member = memberRepository.findById(id).get();
         member.setName(name);
     }
 }
