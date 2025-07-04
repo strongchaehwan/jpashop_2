@@ -1,10 +1,33 @@
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/jpashop
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#  # ? ?? ????? ?????? ?? ???????? ????
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+##        default_batch_fetch_size: 100
+#
+#logging:
+#  level:
+#    org.hibernate.sql: debug
+#
+#
+#
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop
+    url: jdbc:h2:file:~/jpashop;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
     driver-class-name: org.h2.Driver
-  # ? ?? ????? ?????? ?? ???????? ????
 
   jpa:
     hibernate:
@@ -13,11 +36,14 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-#        default_batch_fetch_size: 100
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true  # 외부에서 접속 허용
 
 logging:
   level:
     org.hibernate.sql: debug
-
-
-
